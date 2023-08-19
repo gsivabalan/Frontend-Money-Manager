@@ -6,7 +6,7 @@ import Spinner from "../components/Spinner";
 const Login = () => {
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
-  //from submit
+  
   const submitHandler = async (values) => {
     try {
       setLoading(true);
@@ -25,7 +25,7 @@ const Login = () => {
     }
   };
 
-  //prevent for login user
+  
   useEffect(() => {
     if (localStorage.getItem("user")) {
       navigate("/");
