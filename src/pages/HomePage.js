@@ -56,7 +56,7 @@ const HomePage = () => {
       try{
         const user =JSON.parse(localStorage.getItem('user'))
         setLoading(true)
-        const res= await axios.post('/transections/get-transection',{userid:user._id,filter})
+        const res= await axios.post('https://backend-money-manager.onrender.com/api/v1/transections/get-transection',{userid:user._id,filter})
         setLoading(false);
         setAllTransection(res.data);
         console.log(res.data);
@@ -72,7 +72,7 @@ const HomePage = () => {
   const handleDelete=async (record)=>{
 try {
   setLoading(true);
-  await axios.post('/transections/delete-transection',{transactionId:record._id})
+  await axios.post('https://backend-money-manager.onrender.com/api/v1/transections/delete-transection',{transactionId:record._id})
   setLoading(false);
   message.success('Deleted');
 } catch(error){
@@ -87,14 +87,14 @@ try {
       const user= JSON.parse(localStorage.getItem('user'));
       setLoading(true);
       if(editable){
-        await axios.post('/transections/edit-transection',{
+        await axios.post('https://backend-money-manager.onrender.com/api/v1/transections/edit-transection',{
           payload:{...values, userid:user._id}, transactionId: editable._id
           });
       setLoading(false);
       message.success('Transaction Updated successfully');
 
       }else {
-        await axios.post('/transections/add-transection',{...values, userid:user._id});
+        await axios.post('https://backend-money-manager.onrender.com/api/v1/transections/add-transection',{...values, userid:user._id});
       setLoading(false);
       message.success('Transaction added successfully');
       }
